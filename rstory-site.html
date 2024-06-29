@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rstory</title>
+  <meta name="description" content="Rstory is a crypto token built on EOS and Ethereum.">
+  <meta name="author" content="Mark Bailey">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.2/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script>
+  <script src="https://rstory.mypinata.cloud/ipfs/QmRRRaytjur3gspxa9mUxaxLQhW6A19qRvp4TFweJfACkn"></script>
+  <script src="https://rstory.mypinata.cloud/ipfs/QmPrgG4X6sX3CHLLgrcQU8H8VTqh5mWqWfP6KLtfSfYKxc"></script>
+  <script src="https://unpkg.com/anchor-link@3"></script>
+  <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+  <meta property="og:title" content="Rstory">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Rstory cryptocurrency on EOS and ETH">
+  <meta property="og:image" content="logo180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">  
+  
+  <style>
+        body {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        
+        p, li {
+            font-size: 16px;
+            font-family: courier;            
+        }
+
+        li {
+            padding: 10px;
+        }
+
+        a {
+            color: red;
+        }
+        
+        a:hover {
+            background-color: black;
+            color: white;
+        }
+        
+        h1 {
+            font-family: "Pathway Gothic One", sans-serif;
+            color: red;
+            font-size: 300%;
+            margin: 0;            
+        }
+        
+        img {
+            padding: 10px;
+        }        
+        
+        #footer, #loading {
+            color: cyan;
+            background-color: black;            
+            font-family: courier;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;            
+        }
+
+        #read-btn {
+            width: 100%;
+            color: red;
+            background-color: black;
+            font-family: "Pathway Gothic One", sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 16px;            
+        }
+
+        #read-btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+        /* Tablet view */
+        @media (max-width: 768px) {
+            body {
+            margin-left: 8%;
+            margin-right: 8%;
+        }
+
+        /* Mobile view */
+        @media (max-width: 480px) {
+            body {
+            margin-left: 2%;
+            margin-right: 2%;
+        }        
+  </style>
+  
+</head>
+
+<body>
+<py-config>
+    packages = [
+        "pyodide-http",
+    ]
+</py-config>
+<img align="right" src="logo180.png" alt="Rstory logo" />
+<h1>Tokenized Access to Digital Goods</h1>
+  <p>Rstory is a crypto token with zero decimals that operates on multiple blockchains. Rstory tokens are called tudes. Each one represents an indivisible unit of gratitude.</p>
+  <p>The symbol for <a href="https://etherscan.io/token/0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42">Rstory on Ethereum</a> is TUDE. The contract address is 0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42. The symbol for Rstory on EOS is RSTORY, created by the rstorytokens account. It can be viewed on <a href="https://bloks.io/tokens/RSTORY-eos-rstorytokens">Blocks.io here</a>. Read the revised <a href="https://rstory.io/rstory-whitepaper.pdf">whitepaper here</a>. Announcements can be found on the official <a href="https://hive.blog/@rstory">Rstory communication channel</a>. Join us <a href="https://t.me/+m-WEaUc7Ud8yY2Qx">on Telegram</a> to learn more.</p>
+  <div id="loading">Page loading...</div>
+  <p>Possession of an Rstory token grants the bearer the right to access electronic copies of Mark Bailey's science fiction novels for free. There are 7 of these novels currently available. Purchasing them all on Amazon would cost in excess of $30. </p>
+  <p>Click the button below to connect your Anchor wallet. If there's at least one Rstory token in your wallet, the PDF links below will become active after authentication. To buy Rstory with EOS on Alcor Exchange, <a href="https://eos.alcor.exchange/trade/rstory-rstorytokens_eos-eosio.token">click here</a>. </p>
+  <button id="read-btn">Connect Anchor Wallet</button>
+
+        <ul id="book-list">
+        <li><strong>The Paradise Anomaly</strong> is available in <a href="https://www.blurb.com/b/10994168-the-paradise-anomaly">print via Blurb</a> and for <a href="https://www.amazon.com/dp/B09NLB95NZ">Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>One Man Embassy</strong> is available in <a href="https://blurb.com/b/9876573-one-man-embassy">print via Blurb</a> and for <a href="https://amazon.com/One-Man-Embassy-Mark-Bailey-ebook/dp/B0836SRC8K">Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>Flying Saucer Shenanigans</strong> is available in <a href="https://blurb.com/b/10002213-flying-saucer-shenanigans">print via Blurb</a> and for <a href="https://amazon.com/Flying-Saucer-Shenanigans-Mark-Bailey-ebook/dp/B0863FRJN2">Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>Rainbow Lullaby</strong> is available in <a href="https://blurb.com/b/9330918-rainbow-lullaby">print via Blurb</a> and for <a href="https://amazon.com/Rainbow-Lullaby-Mark-Bailey-ebook/dp/B07P4MYTGT">Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>The Ostermann Method</strong> is available in <a href="https://blurb.com/b/9660167-the-ostermann-method">print via Blurb</a> and for <a href="https://amazon.com/Ostermann-Method-Mark-Bailey-ebook/dp/B07Y6RDTJF">Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>Blue Dragon Mississippi</strong> is available in <a href="https://blurb.com/b/10192086-blue-dragon-mississippi">print via Blurb</a> and for <a href="https://amazon.com/Blue-Dragon-Mississippi-Mark-Bailey-ebook/dp/B08C54F99R" >Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        <li><strong>Psychic Avalanche</strong> is available in <a href="https://www.blurb.com/b/10891426-psychic-avalanche">print via Blurb</a> and for <a href="https://www.amazon.com/dp/B09JS6CV9X" >Kindle on Amazon</a>. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCRYPTED HASH">read the PDF here</a>.</li>
+        </ul>
+
+  <div id="footer">Page by <a href="https://hive.blog/@mada">Mark Bailey</a></div>
+<script type="py">
+import re
+import js
+from js import console, document, fetch, window
+from pyscript import when, display
+import pyodide_http
+from pyodide.http import open_url
+from pyodide.ffi import create_proxy
+import asyncio
+
+pyodide_http.patch_all()
+
+# Re-implementing the Element class
+class Element:
+    def __init__(self, element_id, element=None):
+        self._id = element_id
+        self._element = element
+
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def element(self):
+        """Return the dom element"""
+        if not self._element:
+            self._element = js.document.querySelector(f"#{self._id}")
+        return self._element
+
+    @property
+    def value(self):
+        return self.element.value
+
+    @property
+    def innerHtml(self):
+        return self.element.innerHTML
+
+    def write(self, value, append=False):
+        if not append:
+            self.element.innerHTML = value
+        else:
+            self.element.innerHTML += value
+
+    def clear(self):
+        if hasattr(self.element, "value"):
+            self.element.value = ""
+        else:
+            self.write("", append=False)
+
+    def select(self, query, from_content=False):
+        el = self.element
+
+        if from_content:
+            el = el.content
+
+        _el = el.querySelector(query)
+        if _el:
+            return Element(_el.id, _el)
+        else:
+            js.console.warn(f"WARNING: can't find element matching query {query}")
+
+    def clone(self, new_id=None, to=None):
+        if new_id is None:
+            new_id = self.element.id
+
+        clone = self.element.cloneNode(True)
+        clone.id = new_id
+
+        if to:
+            to.element.appendChild(clone)
+            # Inject it into the DOM
+            to.element.after(clone)
+        else:
+            # Inject it into the DOM
+            self.element.after(clone)
+
+        return Element(clone.id, clone)
+
+    def remove_class(self, classname):
+        classList = self.element.classList
+        if isinstance(classname, list):
+            classList.remove(*classname)
+        else:
+            classList.remove(classname)
+
+    def add_class(self, classname):
+        classList = self.element.classList
+        if isinstance(classname, list):
+            self.element.classList.add(*classname)
+        else:
+            self.element.classList.add(classname)
+
+Element('loading').write("Welcome to Rstory")
+</script>
+
+<script>
+function custom_decode(encoded_str) {
+    return decodeURIComponent(encoded_str.match(/.{1,2}/g).map(function (v) {
+        return '%' + ('0' + v).slice(-2);
+    }).join(''));
+}
+
+function reveal() {
+    const links = document.querySelectorAll('#book-list a');
+    const base_url = "https://rstory.mypinata.cloud/ipfs/";
+    links.forEach(link => {
+        const encoded_hash = link.getAttribute("data-encoded-hash");
+        if (encoded_hash) {
+            const decoded_hash = custom_decode(encoded_hash);
+            link.href = base_url + decoded_hash;
+        }
+    });
+}
+
+// JavaScript login and token check functions
+const dapp = "rstory";
+let login_use = "";
+let wallet_userAccount = "none";
+let wallet_session = null;
+
+const eos = new waxjs.WaxJS({
+    rpcEndpoint: 'https://eos.greymass.com'
+});
+
+const transport = new AnchorLinkBrowserTransport();
+const anchorLink = new AnchorLink({
+    transport,
+    chains: [{
+        chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+        nodeUrl: 'https://eos.greymass.com',
+    }]
+});
+
+function loginEos(anchor) {
+    login_use = anchor;
+    if (anchor) {
+        login_anchor();
+    } else {
+        login_eosjs().then(function (retorno) {
+            wallet_userAccount = retorno;
+            checkToken();
+        });
+    }
+}
+
+function login_anchor() {
+    anchorLink.login(dapp).then((result) => {
+        wallet_session = result.session;
+        wallet_userAccount = wallet_session.auth.actor;
+        checkToken();
+    });
+}
+
+async function login_eosjs() {
+    try {
+        let userAccount = await eos.login();
+        return userAccount;
+    } catch (e) {
+        document.getElementById("autologin").innerHTML = e.message;
+    }
+    return false;
+}
+
+function checkToken() {
+    const eosApiUrl = "https://eos.eosphere.io/";
+    const TokenContract = "rstorytokens";
+    const TokenSymbol = "RSTORY";
+    const jsonData = JSON.stringify({ "json": true, "code": TokenContract, "scope": wallet_userAccount, "table": "accounts", "limit": 10 });
+
+    fetch(eosApiUrl + "v1/chain/get_table_rows", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    })
+        .then(response => response.json())
+        .then(data => {
+            let TokenFound = false;
+            data.rows.forEach(value => {
+                if (value.balance) {
+                    TokenFound = true;
+                    reveal();
+                    document.getElementById("loading").innerHTML = "You have " + value.balance;
+                }
+            });
+            if (!TokenFound) {
+                document.getElementById("loading").innerHTML = "You must possess RSTORY to access the material";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+document.getElementById('read-btn').addEventListener('click', () => loginEos(true));
+</script>
+</body>
+</html>
