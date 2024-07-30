@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The 321 Incident</title>
+  <meta name="description" content="The 321 Incident is a science fiction novel by Mark Bailey.">
+  <meta name="author" content="Mark Bailey">
+  <meta property="og:title" content="321 Incident">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="The 321 Incident is a science fiction novel by Mark Bailey.">
+  <meta property="og:image" content="https://rstory.io/logo180.png">  
+  <script src="https://rstory.mypinata.cloud/ipfs/QmRRRaytjur3gspxa9mUxaxLQhW6A19qRvp4TFweJfACkn"></script>
+  <script src="https://rstory.mypinata.cloud/ipfs/QmPrgG4X6sX3CHLLgrcQU8H8VTqh5mWqWfP6KLtfSfYKxc"></script>
+  <script src="https://unpkg.com/anchor-link@3"></script>
+  <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.6.8/dist/ethers.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">  
+  <style>
+        body {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        
+        p {
+            font-size: 20px;
+            font-family: 'Noto Serif', courier;
+            margin-right: 2%;
+            margin-left: 2%;            
+        }
+
+        hr {
+            height: 10px;
+            background-color: black;		    
+        }
+
+        li {
+            padding: 10px;
+            font-size: 18px;
+            font-family: 'Noto Serif', courier;
+            margin-right: 2%;
+            margin-left: 2%;			
+        }
+
+        a {
+            color: red;
+        }
+        
+        a:hover {
+            background-color: black;
+            color: white;
+        }
+        
+        h1 {
+            font-family: "Pathway Gothic One", sans-serif;
+            color: red;
+            font-size: 300%;
+            margin: 0;            
+        }
+        
+        img {
+            width: 100%;
+            border-radius: 12px;			
+        }        
+        
+        #footer {
+            color: cyan;
+            background-color: black;            
+            font-family: courier;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;
+            margin-top: 12px;            
+        }
+
+        #read-metamask-container, #read-btn-container {
+            width: 49%;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 16px;			
+        }
+
+        #read-btn, #read-metamask {
+            width: 100%;
+            color: cyan;
+            background-color: black;
+            font-family: "Pathway Gothic One", sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            padding: 6px;
+            margin-bottom: 16px;
+            border-radius: 6px;            
+        }
+
+        #read-btn:hover, #read-metamask:hover {
+            color: black;
+            background-color: white;
+        }
+		
+        #vid {
+            width: 560px;
+            margin: auto;			
+        }		
+
+        /* Tablet view */
+        @media (max-width: 768px) {
+            body {
+            margin-left: 8%;
+            margin-right: 8%;
+        }
+
+        /* Mobile view */
+        @media (max-width: 480px) {
+            body {
+            margin-left: 2%;
+            margin-right: 2%;
+        }        
+  </style>
+</head>
+
+<body>
+    <img src="https://rstory.mypinata.cloud/ipfs/QmVWQr9sqfWTPb1qFVDoVUHYN9pV4WGWwfJRgFytj6NwVo" alt="Mysterious happenings in Washington">
+    <p><em>The 321 Incident</em> is about a national tragedy that claims as many lives as 9/11 did. From there, the story follows a handful of characters as they try to navigate the post-tragedy landscape. Although they face steep challenges, synchronicities and the magic of human connections help them find their way. Politics, media, harm reduction, and non-ordinary states of consciousness are some of the themes that the work explores.</p>
+    <hr>	
+    <ul id="book-list">
+        <li><strong><em>The 321 Incident</em></strong> is available exclusively to Rstory holders. If you possess at least one Rstory token you may <a href="#" data-encoded-hash="ENCODED HASH GOES HERE">read The 321 Incident here</a> once it's released. This link won't become active until you connect with Anchor wallet or MetaMask below to prove you have a token. Rstory tokens are <a href="">available on Alcor exchange</a>. Read more about Mark Bailey's science fiction on <a href="https://markbailey.love">markbailey.love</a>.</li>
+    </ul>		
+    <div>
+        <div id="read-btn-container">
+            <button id="read-btn">Anchor Connect</button>
+        </div>
+        <div id="read-metamask-container">
+            <button id="read-metamask">Metamask Connect</button>
+        </div>
+    </div>
+    <div id="vid"><iframe width="560" height="315" src="https://www.youtube.com/embed/Ywk5RrbTQuc?si=bnJIr7kr6dr48sd0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div id="footer">Page by <a href="https://hive.blog/@mada">Mark Bailey</a></div>	
+<script>
+function custom_decode(encoded_str) {
+    return decodeURIComponent(encoded_str.match(/.{1,2}/g).map(function (v) {
+        return '%' + ('0' + v).slice(-2);
+    }).join(''));
+}
+
+function reveal() {
+    const links = document.querySelectorAll('#book-list a');
+    const base_url = "https://rstory.mypinata.cloud/ipfs/";
+    links.forEach(link => {
+        const encoded_hash = link.getAttribute("data-encoded-hash");
+        if (encoded_hash) {
+            const decoded_hash = custom_decode(encoded_hash);
+            link.href = base_url + decoded_hash;
+        }
+    });
+}
+
+// JavaScript login and token check functions
+const dapp = "rstory";
+let login_use = "";
+let wallet_userAccount = "none";
+let wallet_session = null;
+
+const eos = new waxjs.WaxJS({
+    rpcEndpoint: 'https://eos.greymass.com'
+});
+
+const transport = new AnchorLinkBrowserTransport();
+const anchorLink = new AnchorLink({
+    transport,
+    chains: [{
+        chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+        nodeUrl: 'https://eos.greymass.com',
+    }]
+});
+
+function loginEos(anchor) {
+    login_use = anchor;
+    if (anchor) {
+        login_anchor();
+    } else {
+        login_eosjs().then(function (retorno) {
+            wallet_userAccount = retorno;
+            checkToken();
+        });
+    }
+}
+
+function login_anchor() {
+    anchorLink.login(dapp).then((result) => {
+        wallet_session = result.session;
+        wallet_userAccount = wallet_session.auth.actor;
+        checkToken();
+    });
+}
+
+async function login_eosjs() {
+    try {
+        let userAccount = await eos.login();
+        return userAccount;
+    } catch (e) {
+        document.getElementById("autologin").innerHTML = e.message;
+    }
+    return false;
+}
+
+function checkToken() {
+    const eosApiUrl = "https://eos.eosphere.io/";
+    const TokenContract = "rstorytokens";
+    const TokenSymbol = "RSTORY";
+    const jsonData = JSON.stringify({ "json": true, "code": TokenContract, "scope": wallet_userAccount, "table": "accounts", "limit": 10 });
+
+    fetch(eosApiUrl + "v1/chain/get_table_rows", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    })
+        .then(response => response.json())
+        .then(data => {
+            let TokenFound = false;
+            data.rows.forEach(value => {
+                if (value.balance) {
+                    TokenFound = true;
+                    reveal();
+                    document.getElementById("loading").innerHTML = "You have " + value.balance;
+                }
+            });
+            if (!TokenFound) {
+                document.getElementById("loading").innerHTML = "You must possess RSTORY to access the material";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+// Identify the accounts and connect MetaMask to the website.
+async function connectMetaMask() {
+    if (typeof window.ethereum !== 'undefined') {
+        try {
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            handleAccountsChanged(accounts);
+        } catch (error) {
+            if (error.code === 4001) {
+                console.log('Please connect to MetaMask.');
+            } else {
+                console.error(error);
+            }
+        }
+    } else {
+        alert('MetaMask is not installed. Please install MetaMask to use this feature.');
+    }
+}
+
+// Handle the account change and token check
+function handleAccountsChanged(accounts) {
+    if (accounts.length === 0) {
+        console.log('Please connect to MetaMask.');
+    } else {
+        const account = accounts[0];
+        checkMetaMaskToken(account);
+    }
+}
+
+// Check for the Rstory token in the connected MetaMask account
+async function checkMetaMaskToken(account) {
+    const contractAddress = '0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42';
+    const abi = [
+        // The minimal ABI to get ERC20 Token balance
+        {
+            "constant": true,
+            "inputs": [{ "name": "_owner", "type": "address" }],
+            "name": "balanceOf",
+            "outputs": [{ "name": "balance", "type": "uint256" }],
+            "type": "function"
+        }
+    ];
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+
+    try {
+        const balance = await contract.balanceOf(account);
+        if (balance.gt(0)) {
+            reveal();
+            document.getElementById('loading').innerHTML = `You have ${balance.toString()} TUDEs.`;
+        } else {
+            document.getElementById('loading').innerHTML = 'You must possess TUDE to access the material';
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+document.getElementById('read-btn').addEventListener('click', () => loginEos(true));
+document.getElementById('read-metamask').addEventListener('click', connectMetaMask);
+</script>
+</body>
+</html>
