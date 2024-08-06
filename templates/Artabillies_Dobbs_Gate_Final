@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Preview Gate</title>
+    <script src="https://rstory.mypinata.cloud/ipfs/QmRRRaytjur3gspxa9mUxaxLQhW6A19qRvp4TFweJfACkn"></script>
+    <script src="https://rstory.mypinata.cloud/ipfs/QmPrgG4X6sX3CHLLgrcQU8H8VTqh5mWqWfP6KLtfSfYKxc"></script>
+    <script src="https://unpkg.com/anchor-link@3"></script>
+    <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.6.8/dist/ethers.umd.min.js"></script>	
+
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .container {
+            max-width: 960px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .header p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .header ol {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.6;			
+            text-align: left;
+        }		
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #button-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }		
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #loading {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1em;
+            color: #007bff;
+        }
+        .token-info {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #007bff;
+        }
+        .token-info img {
+            float: right;
+            margin-left: 20px;
+            width: 100px;
+        }
+        .token-info h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .token-info p {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: white;
+            background-color: #007bff; 
+        }
+
+        /* For smaller screens (2 images per row) */
+        @media (max-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* For the smallest screens (1 image per row) */
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }		
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Artist and Digital Product Information Header -->
+        <div class="header">
+            <h1>DO YOU DO DOBBS RSTORY GALLERY</h1>
+            <p>In these whimsical and vibrant cartoon illustrations, a distinguished gentleman exudes sophistication and elegance with his classic top hat and monocle. Despite his aristocratic appearance, he engages in an unexpected activity: doing cannabis dabs. Holding a gooey dab tool in one hand, with its sticky substance glistening, he is surrounded by a psychedelic aura filled with vibrant, rainbow-filled colors that enhance the surreal and fantastical atmosphere. Adding a humorous twist, a cartoon speech window emerges from his poised lips, asking, “Do you do Dobbs?” The question, delivered in a pompous and sophisticated manner, juxtaposes the gentleman’s upper-class demeanor with the playful and laid-back activity he is partaking in. This delightful contrast creates a memorable and captivating visual experience, blending sophistication with a touch of playful absurdity.</p>
+
+
+            <p><strong>DeJahn: The Visionary Behind DOBBS</strong></p>
+
+<p>DeJahn is a celebrated artist whose work is at the intersection of psychedelic aesthetics, mixed media, and cutting-edge digital innovation. Renowned for his vibrant and immersive creations, DeJahn’s art captivates the viewer with a kaleidoscope of colors, intricate patterns, and surreal imagery. His pieces are not only a feast for the eyes but also a journey into the depths of consciousness, exploring themes of nature, the cosmos, and the human mind.</p>
+
+<p><strong>Gallery Overview: Unlocking DeJahn’s Art with RSTORY and TUDE Tokens</strong></p>
+
+<p>Welcome to DeJahn’s exclusive digital gallery, where you can access high-resolution versions of his iconic artworks. This gallery is more than just a place to view art it's an experience in the cutting edge of merging the physical and digital worlds. The high-resolution images available here are presented in a way that truly does justice to DeJahn’s intricate and vibrant style.</p>
+
+<p>However, access to these high-resolution images is gated, meaning only those who possess specific digital tokens can unlock the full experience. By holding an <strong>RSTORY</strong> or <strong>TUDE</strong> token, you can download DeJahn’s artwork in high quality JPEG format, allowing you to enjoy his creations in their full glory.</p>
+
+<h3>What is a Token, and How Does It Work?</h3>
+
+<p>A token is a type of digital asset that exists on a blockchain—a decentralized and secure ledger technology. In this context, owning an <strong>RSTORY</strong> or <strong>TUDE</strong> token gives you special privileges, such as accessing premium content in this gallery. These tokens function similarly to a membership key, granting you entry to exclusive content that is not available to the general public.</p>
+
+<h3>About RSTORY and TUDE Tokens</h3>
+
+<p><strong>RSTORY Token:</strong> Available on the EOS network through the Anchor wallet, <strong>RSTORY</strong> is designed to support and promote creative collaborations in the digital art world. By holding an <strong>RSTORY</strong> token, you gain access to unique content and experiences, such as the high-resolution art in this gallery. <strong>RSTORY</strong> is more than just a token; it’s a gateway and network of a community of creators and art lovers that create innovative technologies who value and support digital art projects.</p>
+
+<p><strong>TUDE Token: TUDE</strong> operates on Ethereum’s network and can be accessed through MetaMask, a popular Ethereum wallet. Similar to <strong>RSTORY</strong>, the <strong>TUDE</strong> token allows holders to unlock exclusive content, participate in special events, and be part of a growing digital art ecosystem. <strong>TUDE</strong>’s presence on the Ethereum network makes it widely accessible, enabling art enthusiasts from around the world to engage with DeJahn’s work and other digital art offerings.</p>
+
+<h3>Unlocking DeJahn’s Art: How It Works</h3>
+
+<ol>
+    <li><strong>Acquire a Token:</strong> To access the high-resolution versions of DeJahn’s artwork, you need to own either an <strong>RSTORY</strong> or <strong>TUDE</strong> token. These tokens can be purchased on cryptocurrency markets. For <strong>RSTORY</strong>, you would use the Anchor wallet on the EOS network, while <strong>TUDE</strong> is available through MetaMask on the Ethereum network.</li>
+    <li><strong>Verify Your Token:</strong> Once you have your token, connect your wallet to this gallery. The system will automatically verify your token ownership. If you have the required token, the premium content will be unlocked.<li><strong>Download the Art:</strong> After verification, you can choose to download DeJahn’s high-resolution art JPEG. This format ensures that you experience the art in its highest quality, capturing every detail and color as DeJahn intended.</li>
+</ol>
+
+<h3>The Future of Art with RSTORY</h3>
+
+<p><strong>RSTORY</strong> is a network that supports the next generation of digital artists. By collaborating with creators like DeJahn, <strong>RSTORY</strong>'s network is pushing the boundaries of what is possible in the art world. Implementations like this gallery are just the beginning, as <strong>RSTORY</strong> continues to explore new ways to integrate blockchain technology with creative expression.</p>
+
+<p>Holding an <strong>RSTORY</strong> token means you are part of this innovative ecosystem, where art, technology, and community come together. Whether you’re an art collector, a digital enthusiast, or simply someone who appreciates the finer things in life, <strong>RSTORY</strong> offers a unique opportunity to engage with art in a way that’s never been possible before.</p>
+
+<h3>Conclusion</h3>
+
+<p>DeJahn’s gallery represents a fusion of art and technology, offering an exclusive experience to those who hold <strong>RSTORY</strong> or <strong>TUDE</strong> tokens. By unlocking this premium content, you are not just viewing art—you are becoming a part of a larger narrative that celebrates creativity, innovation, and the power of digital ownership. Explore, engage, and enjoy the world of DeJahn like never before, and be a part of the future of digital art with <strong>RSTORY</strong>.</p>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="gallery">
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs1.jpeg" alt="Product Image 1" />
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs2.jpeg" alt="Product Image 2" />
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs3.jpeg" alt="Product Image 3" />
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs4.jpeg" alt="Product Image 4" />
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs5.jpeg" alt="Product Image 5" />
+            <img src="https://rstory.mypinata.cloud/ipfs/QmbM9mAPGW2oUTmFER17vByToSuoPS3bDdp6WbWPTh9BAF/Do_You_Do_Dobbs6.jpeg" alt="Product Image 6" />
+        </div>
+        <h2><strong>High-Resolution Product Images</strong></h2>
+        <ul id="gallery-list">
+            <li><a href="#" data-encoded-hash="516d61527156486243424a5162597a7a5870327664573150644e396250756939734d6f33756d4d73366f7655544d"><strong>SEE FULL GALLERY HERE AFTER CONNECTING YOUR WALLET</strong></a></li>
+			<li><a href="http://www.artabillies.com/dejahn"><strong>VIEW AND PURCHASE DEJAHN'S PHYSICAL ART HERE AND GAIN RSTORY TOKENS</strong></a></li>
+        </ul>
+        <div id="button-row">
+        <button id="read-btn">Anchor Connect</button>
+        <button id="read-metamask">Metamask Connect</button>
+        </div>
+        <!-- Tokenized Access Information Section -->
+        <div class="token-info">
+            <a href="https://rstory.io"><img src="https://rstory.io/logo180.png" alt="Rstory logo" /></a>
+            <h1><strong>Tokenized Access to Digital Goods</strong></h1>
+            <p><strong>RSTORY</strong> is a crypto token with zero decimals that operates on multiple blockchains. <strong>RSTORY</strong> tokens are called tudes. Each one represents an indivisible unit of gratitude.</p>
+            <p>The symbol for <a href="https://etherscan.io/token/0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42"><strong>RSTORY</strong> on Ethereum</a> is <strong>TUDE</strong>. The contract address is 0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42. The symbol for <strong>RSTORY</strong> on EOS is <strong>RSTORY</strong>, created by the rstorytokens account. It can be viewed on <a href="https://bloks.io/tokens/RSTORY-eos-rstorytokens">Blocks.io here</a>. Read the revised <a href="https://rstory.io/rstory-whitepaper.pdf">whitepaper here</a>. Announcements can be found on the official <a href="https://hive.blog/@rstory">RSTORY communication channel</a>. Visit <a href="https://rstory.io">rstory.io</a> or join us <a href="https://t.me/+m-WEaUc7Ud8yY2Qx">on Telegram</a> to learn more.</p>
+
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+<script>
+function custom_decode(encoded_str) {
+    return decodeURIComponent(encoded_str.match(/.{1,2}/g).map(function (v) {
+        return '%' + ('0' + v).slice(-2);
+    }).join(''));
+}
+
+function reveal() {
+    const links = document.querySelectorAll('#gallery-list a');
+    const base_url = "https://rstory.mypinata.cloud/ipfs/";
+    links.forEach(link => {
+        const encoded_hash = link.getAttribute("data-encoded-hash");
+        if (encoded_hash) {
+            const decoded_hash = custom_decode(encoded_hash);
+            link.href = base_url + decoded_hash;
+        }
+    });
+}
+
+// JavaScript login and token check functions
+const dapp = "rstory";
+let login_use = "";
+let wallet_userAccount = "none";
+let wallet_session = null;
+
+const eos = new waxjs.WaxJS({
+    rpcEndpoint: 'https://eos.greymass.com'
+});
+
+const transport = new AnchorLinkBrowserTransport();
+const anchorLink = new AnchorLink({
+    transport,
+    chains: [{
+        chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+        nodeUrl: 'https://eos.greymass.com',
+    }]
+});
+
+function loginEos(anchor) {
+    login_use = anchor;
+    if (anchor) {
+        login_anchor();
+    } else {
+        login_eosjs().then(function (retorno) {
+            wallet_userAccount = retorno;
+            checkToken();
+        });
+    }
+}
+
+function login_anchor() {
+    anchorLink.login(dapp).then((result) => {
+        wallet_session = result.session;
+        wallet_userAccount = wallet_session.auth.actor;
+        checkToken();
+    });
+}
+
+async function login_eosjs() {
+    try {
+        let userAccount = await eos.login();
+        return userAccount;
+    } catch (e) {
+        document.getElementById("autologin").innerHTML = e.message;
+    }
+    return false;
+}
+
+function checkToken() {
+    const eosApiUrl = "https://eos.eosphere.io/";
+    const TokenContract = "rstorytokens";
+    const TokenSymbol = "RSTORY";
+    const jsonData = JSON.stringify({ "json": true, "code": TokenContract, "scope": wallet_userAccount, "table": "accounts", "limit": 10 });
+
+    fetch(eosApiUrl + "v1/chain/get_table_rows", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonData
+    })
+        .then(response => response.json())
+        .then(data => {
+            let TokenFound = false;
+            data.rows.forEach(value => {
+                if (value.balance) {
+                    TokenFound = true;
+                    reveal();
+                    document.getElementById("loading").innerHTML = "You have " + value.balance;
+                }
+            });
+            if (!TokenFound) {
+                document.getElementById("loading").innerHTML = "You must possess RSTORY to access the material";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+// Identify the accounts and connect MetaMask to the website.
+async function connectMetaMask() {
+    if (typeof window.ethereum !== 'undefined') {
+        try {
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            handleAccountsChanged(accounts);
+        } catch (error) {
+            if (error.code === 4001) {
+                console.log('Please connect to MetaMask.');
+            } else {
+                console.error(error);
+            }
+        }
+    } else {
+        alert('MetaMask is not installed. Please install MetaMask to use this feature.');
+    }
+}
+
+// Handle the account change and token check
+function handleAccountsChanged(accounts) {
+    if (accounts.length === 0) {
+        console.log('Please connect to MetaMask.');
+    } else {
+        const account = accounts[0];
+        checkMetaMaskToken(account);
+    }
+}
+
+// Check for the Rstory token in the connected MetaMask account
+async function checkMetaMaskToken(account) {
+    const contractAddress = '0xa9deffb371dd9c7fd2cfc6676cdb3bc394b45a42';
+    const abi = [
+        // The minimal ABI to get ERC20 Token balance
+        {
+            "constant": true,
+            "inputs": [{ "name": "_owner", "type": "address" }],
+            "name": "balanceOf",
+            "outputs": [{ "name": "balance", "type": "uint256" }],
+            "type": "function"
+        }
+    ];
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+
+    try {
+        const balance = await contract.balanceOf(account);
+        if (balance.gt(0)) {
+            reveal();
+            document.getElementById('loading').innerHTML = `You have ${balance.toString()} TUDEs.`;
+        } else {
+            document.getElementById('loading').innerHTML = 'You must possess TUDE to access the material';
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+document.getElementById('read-btn').addEventListener('click', () => loginEos(true));
+document.getElementById('read-metamask').addEventListener('click', connectMetaMask);
+</script>
+</body>
+</html>
