@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Well Do Ya?</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #333;
+            color: #ff6347;
+            padding: 20px;
+            margin: 0;
+            font-size: 3em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery-item {
+            margin: 15px;
+            background-color: #444;
+            border: 2px solid #555;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 500px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .gallery-item p {
+            padding: 15px;
+            margin: 0;
+            background-color: #222;
+            border-top: 1px solid #333;
+        }
+        .gallery-item p.title {
+            font-weight: bold;
+            color: #ff6347;
+            font-size: 1.2em;
+        }
+        .gallery-item p.description {
+            color: #ddd;
+            font-size: 1em;
+            line-height: 1.4;
+            min-height: 60px; /* Adjust this value to fit your design */
+        }
+        @media (max-width: 600px) {
+            .gallery-item {
+                width: 90%;
+            }
+        }
+        @media (min-width: 600px) {
+            .gallery-item {
+                width: 45%;
+            }
+        }
+        @media (min-width: 1000px) {
+            .gallery-item {
+                width: 30%;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: 15% auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Well Do Ya?</h1>
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs1.jpeg" alt="Artwork 1">
+            <p class="title">DABS?</p>
+            <p class="description"> A distinguished gentleman with a top hat and monocle does cannabis dabs in a whimsical, psychedelic scene, humorously asking, “Do you do Dobbs?”.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs2.jpeg" alt="Artwork 2">
+            <p class="title">DOBBS?</p>
+            <p class="description"> A sophisticated man in a top hat and monocle humorously contrasts his highbrow appearance by doing cannabis dabs in a colorful, psychedelic scene, asking, “Do you do Dobbs?"</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs3.jpeg" alt="Artwork 3">
+            <p class="title">DO YOU?</p>
+            <p class="description"> A gentleman in a top hat and monocle indulges in cannabis dabs in a vibrant, psychedelic scene, humorously asking, “Do you do Dobbs?”</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs4.jpeg" alt="Artwork 4">
+            <p class="title">DO?</p>
+            <p class="description"> A sophisticated man with a top hat and monocle does cannabis dabs in a colorful, psychedelic scene, humorously asking, “Do you do Dobbs?”</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs5.jpeg" alt="Artwork 5">
+            <p class="title">YOU?</p>
+            <p class="description"> A gentleman with a top hat and monocle engages in cannabis dabs in a vibrant, psychedelic scene, humorously asking, “Do you do Dobbs?”</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://rstory.mypinata.cloud/ipfs/Qme8AmQNAQKh3bEDpKMhx18qp6k1yWqsJjvffQXLCKRMXu/Do_You_Do_Dobbs6.jpeg" alt="Artwork 6">
+            <p class="title">DO YOU DO DOBBS?</p>
+            <p class="description"> A distinguished gentleman in a top hat and monocle does cannabis dabs in a whimsical, psychedelic scene, humorously asking, “Do you do Dobbs?”</p>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Full-size image">
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the modal image element
+        var modalImg = document.getElementById('modal-img');
+
+        // Get the close button element
+        var closeBtn = document.getElementsByClassName('close')[0];
+
+        // Loop through each gallery item
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // Get the source of the clicked image
+                var imgSrc = item.querySelector('img').src;
+
+                // Set the source of the modal image
+                modalImg.src = imgSrc;
+
+                // Display the modal
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
