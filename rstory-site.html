@@ -1082,22 +1082,30 @@ window.addEventListener('load', () => {
 
 async function connectMetaMask() {
   console.log("connectMetaMask() called");
-  if (window.ethereum) {
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // Clear connection state by explicitly calling:
+
+  if (!window.ethereum || !window.ethereum.isMetaMask) {
+    alert('MetaMask is not installed or detected. Please use MetaMask, not Phantom.');
+    return;
+  }
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+  try {
+    const existingAccounts = await provider.listAccounts();
+    if (existingAccounts.length > 0) {
+      console.log("Already connected MetaMask accounts:", existingAccounts);
+      handleAccountsChanged(existingAccounts);
+    } else {
       const accounts = await provider.send("eth_requestAccounts", []);
-      console.log("Accounts returned:", accounts);
+      console.log("User authorized MetaMask. Accounts returned:", accounts);
       handleAccountsChanged(accounts);
-    } catch (error) {
-      if (error.code === 4001) {
-        console.log('User rejected MetaMask connection.');
-      } else {
-        console.error("MetaMask error:", error);
-      }
     }
-  } else {
-    alert('MetaMask is not installed or not detected. For mobile, please open this dApp inside the MetaMask app.');
+  } catch (error) {
+    if (error.code === 4001) {
+      console.log('User rejected MetaMask connection.');
+    } else {
+      console.error("MetaMask connection error:", error);
+    }
   }
 }
 
@@ -1125,14 +1133,14 @@ async function checkMetaMaskToken(account) {
   const contract = new ethers.Contract(contractAddress, abi, provider);
   try {
     const balanceBN = await contract.balanceOf(account);
-    // Assuming TUDE uses 18 decimals. Adjust if necessary:
+    // TUDE uses 0 decimals:
     const balance = ethers.utils.formatUnits(balanceBN, 0);
     console.log("Raw balance:", balanceBN.toString(), "Formatted balance:", balance);
     
     // Use a proper comparison: convert formatted balance to a number for comparison.
     if (Number(balance) > 0) {
       reveal();
-      document.getElementById('loading').innerHTML = `You have ${balance} TUDEs.`;
+      document.getElementById('loading').innerHTML = `Nice! ${balance} TUDEs detected. All links activated.`;
     } else {
       document.getElementById('loading').innerHTML = 'You must possess TUDE to access the material';
     }
@@ -1140,7 +1148,6 @@ async function checkMetaMaskToken(account) {
     console.error("Error checking token balance:", error);
   }
 }
-
 
 // Bind button events for EOS/Anchor & MetaMask on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
