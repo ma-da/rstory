@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rstory Token Gate — Minimal Client Only</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0e0d11; --fg:#e7e4d9; --muted:#a9a295;
+      --ok:#10b981; --warn:#f59e0b; --err:#ef4444; --border:#2b2b2b;
+    }
+    html,body{height:100%;margin:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);display:grid;place-items:center}
+    .card{width:min(680px,92vw);border:1px solid var(--border);border-radius:12px;padding:18px;display:grid;gap:12px;background:#15141b}
+    h1{margin:0;font-size:20px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .right{margin-left:auto}
+    button{border:1px solid var(--border);background:#1e1d25;color:var(--fg);padding:10px 14px;border-radius:10px;cursor:pointer}
+    button:hover{filter:brightness(1.1)}
+    .badge{font-size:12px;padding:6px 10px;border-radius:999px;background:#201f29;color:var(--muted);border:1px solid var(--border)}
+    .ok{color:#052e24;background:rgba(16,185,129,.18)}
+    .warn{color:#3e2a05;background:rgba(245,158,11,.18)}
+    .err{color:#3f0b0b;background:rgba(239,68,68,.18)}
+    .gateout{padding:12px;border:1px dashed var(--border);border-radius:8px;color:var(--muted)}
+    .gated{display:none}
+    .kv{font-size:13px;color:var(--muted)}
+    code{background:#1f1e26;border:1px solid var(--border);padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="row">
+      <h1>Rstory Holders Gate (Client-only)</h1>
+      <span class="badge right" id="status">Not connected</span>
+    </div>
+
+    <div class="row">
+      <button id="connectBtn">Connect Phantom</button>
+      <span id="walletBadge" class="badge">Wallet: —</span>
+      <span id="balanceBadge" class="badge">RSTORY: —</span>
+    </div>
+
+    <div class="gateout" id="gateMsg">
+      Connect Phantom and hold at least <strong id="thrShow">10,000</strong> RSTORY to access.
+    </div>
+
+    <!-- GATED CONTENT -->
+    <div id="gatedArea" class="gated">
+      <p class="kv">🎉 Access granted. You hold enough <code>RSTORY</code> to enter.</p>
+      <!-- Put your real page/app here -->
+      <p>Put your app here…</p>
+    </div>
+
+    <div class="kv">
+      <div>Mint: <code id="mintShow">RstyC4aoSD1JKPGTxnjB3PkWdRzV3yoePH1XiPMxBfz</code></div>
+    </div>
+  </div>
+
+  <!-- Solana web3.js (ESM) -->
+  <script type="module">
+    import { Connection, PublicKey } from "https://esm.sh/@solana/web3.js@1.95.3";
+
+    /********** CONFIG **********/
+    // Your key (hex-encoded) — replace with your own for production
+    const ANKR_HEX = "YOUR HEX ENCODED ANKR KEY";
+    const CHAIN = "solana"; // "solana", "solana_devnet", "solana_testnet"
+    const RSTORY_MINT = "RstyC4aoSD1JKPGTxnjB3PkWdRzV3yoePH1XiPMxBfz";
+    const RSTORY_DECIMALS = 6;
+    const THRESHOLD_USER_UNITS = 10000; // 10k RSTORY required, adjust as desired
+    const THRESHOLD_RAW_UNITS = BigInt(THRESHOLD_USER_UNITS) * BigInt(10 ** RSTORY_DECIMALS);
+
+    /********** DOM **********/
+    const statusEl  = document.getElementById("status");
+    const gateMsg   = document.getElementById("gateMsg");
+    const gatedArea = document.getElementById("gatedArea");
+    const connectBtn= document.getElementById("connectBtn");
+    const walletBd  = document.getElementById("walletBadge");
+    const balBd     = document.getElementById("balanceBadge");
+    document.getElementById("thrShow").textContent = THRESHOLD_USER_UNITS.toLocaleString();
+    document.getElementById("mintShow").textContent = RSTORY_MINT;
+
+    /********** UTILS **********/
+    function hexToString(hex){
+      const clean = String(hex).replace(/[^0-9a-f]/gi,"");
+      let out = "";
+      for(let i=0;i<clean.length;i+=2){
+        out += String.fromCharCode(parseInt(clean.slice(i,i+2),16));
+      }
+      return out;
+    }
+    function hasPhantom(){ return typeof window.solana !== "undefined" && window.solana?.isPhantom; }
+    function shortKey(k){ return k.slice(0,4)+"…"+k.slice(-4); }
+
+    // optional: compact "k" format for balances
+    function formatHumanK(rawBig){
+      const scale = Number(10 ** RSTORY_DECIMALS);
+      const units = Number(rawBig) / scale;
+      if (units >= 1000){                     // thousands+
+        const k = units / 1000;
+        return (k % 1 === 0 ? k.toFixed(0) : (k >= 10 ? k.toFixed(0) : k.toFixed(1))) + "k";
+      }
+      if (units >= 1) return units.toFixed(2).replace(/\.00$/,"");
+      if (units >= 0.1) return units.toFixed(1);
+      return units.toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
+    }
+
+    /********** SOLANA **********/
+    const SOLANA_RPC = `https://rpc.ankr.com/${CHAIN}/${encodeURIComponent(hexToString(ANKR_HEX))}`;
+    const connection = new Connection(SOLANA_RPC, { commitment: "confirmed" });
+    let walletPubkey = null;
+
+    async function getRstoryBalanceRaw(ownerPk){
+      const accounts = await connection.getParsedTokenAccountsByOwner(ownerPk, { mint: new PublicKey(RSTORY_MINT) });
+      let sum = 0n;
+      for (const acc of accounts.value){
+        const info = acc.account.data.parsed.info;
+        sum += BigInt(info.tokenAmount.amount);
+      }
+      return sum; // BigInt raw units
+    }
+
+    async function enforceGate(){
+      if (!walletPubkey){
+        statusEl.textContent = "Connect Phantom";
+        statusEl.className = "badge warn";
+        gatedArea.style.display = "none";
+        gateMsg.style.display = "block";
+        return false;
+      }
+      statusEl.textContent = "Checking RSTORY…";
+      statusEl.className = "badge";
+      try{
+        const raw = await getRstoryBalanceRaw(walletPubkey);
+        const humanK = formatHumanK(raw);
+        balBd.textContent = `RSTORY: ${humanK}`;
+        if (raw >= THRESHOLD_RAW_UNITS){
+          statusEl.textContent = "Access granted";
+          statusEl.className = "badge ok";
+          gateMsg.style.display = "none";
+          gatedArea.style.display = "block";
+          return true;
+        } else {
+          statusEl.textContent = "Insufficient balance";
+          statusEl.className = "badge err";
+          gateMsg.style.display = "block";
+          gatedArea.style.display = "none";
+          return false;
+        }
+      }catch(e){
+        statusEl.textContent = "Balance check failed";
+        statusEl.className = "badge err";
+        console.error(e);
+        gateMsg.style.display = "block";
+        gatedArea.style.display = "none";
+        return false;
+      }
+    }
+
+    async function connectPhantom(){
+      if (!hasPhantom()){
+        statusEl.textContent = "Phantom not found";
+        statusEl.className = "badge err";
+        window.open("https://phantom.app/", "_blank");
+        return;
+      }
+      try{
+        const resp = await window.solana.connect();
+        walletPubkey = new PublicKey(resp.publicKey.toString());
+        walletBd.textContent = "Wallet: " + shortKey(walletPubkey.toBase58());
+        await enforceGate();
+      }catch(err){
+        statusEl.textContent = "Connect canceled";
+        statusEl.className = "badge warn";
+      }
+    }
+
+    // listeners
+    connectBtn.addEventListener("click", connectPhantom);
+    try{
+      window.solana?.on?.("accountChanged", async (pubkey)=>{
+        if (pubkey){
+          walletPubkey = new PublicKey(pubkey.toString());
+          walletBd.textContent = "Wallet: " + shortKey(walletPubkey.toBase58());
+        } else {
+          walletPubkey = null;
+          walletBd.textContent = "Wallet: —";
+        }
+        await enforceGate();
+      });
+    }catch{}
+
+    // Optional: auto-detect Phantom on load and set status
+    (function init(){
+      statusEl.textContent = hasPhantom() ? "Phantom detected" : "Install Phantom";
+      statusEl.className = hasPhantom() ? "badge" : "badge warn";
+    })();
+  </script>
+</body>
+</html>
